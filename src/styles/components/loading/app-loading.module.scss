@@ -1,0 +1,9 @@
+.app-loading {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background-color: theme('colors.gray-1');
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

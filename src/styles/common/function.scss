@@ -1,0 +1,5 @@
+@import 'common/variable';
+
+@function px-to-rem($value) {
+  @return ($value / $font-size-default) + rem;
+}
