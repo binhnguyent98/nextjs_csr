@@ -27,7 +27,7 @@ export default function App({ Component, pageProps }: AppPropsWithLayout) {
       <PersistGate persistor={persistor}>
         <AxiosProvider>
           <QueryClientProvider client={queryClient}>
-            <RootContainer layoutType={Component.layoutType}>
+            <RootContainer layoutType={Component.layoutType ?? ROOT_LAYOUT_TYPE.GUEST}>
               <Component {...pageProps} />
             </RootContainer>
           </QueryClientProvider>
