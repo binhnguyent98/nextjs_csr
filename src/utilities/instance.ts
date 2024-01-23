@@ -25,7 +25,7 @@ export function instanceToCamelCase<T extends object | []>(instance: T) {
   }
 }
 
-export function paseInstance<TInstance>({ data, instance }: { data: unknown; instance: ClassConstructor<TInstance> }) {
+export function formToInstance<TInstance>({ data, instance }: { data: unknown; instance: ClassConstructor<TInstance> }) {
   const plain = instanceToPlain(data);
   const result = plainToInstance(instance, plain);
 

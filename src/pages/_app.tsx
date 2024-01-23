@@ -9,6 +9,7 @@ import { PersistGate } from 'redux-persist/integration/react';
 
 import { ROOT_LAYOUT_TYPE, RootContainer } from '@/containers/root';
 import { AxiosProvider } from '@/providers/axios';
+import { TranslateProvider } from '@/providers/translate';
 import { persistor, storeGlobal } from '@/store';
 
 export type NextPageWithLayout<P = object, IP = P> = NextPage<P, IP> & {
@@ -27,9 +28,11 @@ export default function App({ Component, pageProps }: AppPropsWithLayout) {
       <PersistGate persistor={persistor}>
         <AxiosProvider>
           <QueryClientProvider client={queryClient}>
-            <RootContainer layoutType={Component.layoutType ?? ROOT_LAYOUT_TYPE.GUEST}>
-              <Component {...pageProps} />
-            </RootContainer>
+            <TranslateProvider>
+              <RootContainer layoutType={Component.layoutType ?? ROOT_LAYOUT_TYPE.GUEST}>
+                <Component {...pageProps} />
+              </RootContainer>
+            </TranslateProvider>
           </QueryClientProvider>
         </AxiosProvider>
       </PersistGate>

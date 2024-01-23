@@ -1,17 +1,23 @@
+import { createSelector } from '@reduxjs/toolkit';
 import { useRouter } from 'next/router';
 
 import { AppLoading } from '@/components/loading/appLoading';
 import { PATH } from '@/constants/path';
-import { useSelector } from '@/store';
+import { RootState, useSelector } from '@/store';
 
 interface Props {
   children?: React.ReactNode;
 }
 
+const authSelector = (state: RootState) => state.auth;
+const appLoaderSelector = (state: RootState) => state.app.appLoader;
+
+const combinedSelector = createSelector([authSelector, appLoaderSelector], (auth, appLoader) => ({ auth, appLoader }));
+
 export const withGuest = <T extends Props = Props>(Component: React.ComponentType<T>) => {
   const HOC: React.FC<T> = (props: T) => {
     const router = useRouter();
-    const { auth, appLoader } = useSelector((state) => ({ auth: state.auth, appLoader: state.app.appLoader }));
+    const { auth, appLoader } = useSelector(combinedSelector);
     const { accessToken, refreshToken } = auth;
 
     if (!appLoader) {

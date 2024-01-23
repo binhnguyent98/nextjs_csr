@@ -1,0 +1,8 @@
+{
+  "title": "ログイン",
+  "fields": {
+    "email": "メール",
+    "password": "パスワード",
+    "remember": "覚えています"
+  }
+}

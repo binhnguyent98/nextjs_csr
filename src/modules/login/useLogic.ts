@@ -4,7 +4,7 @@ import { useAction } from '@/hooks';
 import { login } from '@/services';
 import { useDispatch } from '@/store';
 import { authenticationAction } from '@/store/action';
-import { paseInstance } from '@/utilities/instance';
+import { formToInstance } from '@/utilities/instance';
 
 import { AuthFormDto, Props } from './declare';
 
@@ -16,7 +16,7 @@ export const useLogic = (): Props => {
   });
 
   const onLogin = async (data: AuthFormDto) => {
-    const param = paseInstance<AuthReqDto>({ data: new AuthFormDto(data), instance: AuthReqDto });
+    const param = formToInstance<AuthReqDto>({ data: new AuthFormDto(data), instance: AuthReqDto });
 
     const response = await actionLogic.mutateAsync(param);
     const accessToken = response?.data?.accessToken;

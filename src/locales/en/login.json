@@ -1,0 +1,8 @@
+{
+  "title": "EN: Login",
+  "fields": {
+    "email": "Email",
+    "password": "Password",
+    "remember": "Is remember"
+  }
+}

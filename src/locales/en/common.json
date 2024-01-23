@@ -1,0 +1,7 @@
+{
+  "title": "Login",
+  "action": {
+    "submit": "Submit",
+    "logout": "Logout"
+  }
+}
