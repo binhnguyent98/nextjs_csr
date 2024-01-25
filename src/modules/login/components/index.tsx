@@ -58,7 +58,6 @@ const Component = ({ onLogin }: Props) => {
               <Button htmlType="button" onClick={handleSubmit(onLogin)}>
                 {t('common:action.submit')}
               </Button>
-              <Button onClick={handleSubmit(onLogin)}>{t('common:action.submit')}</Button>
             </div>
           </div>
         </Form>
