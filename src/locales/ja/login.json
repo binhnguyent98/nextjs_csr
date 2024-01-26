@@ -3,6 +3,7 @@
   "fields": {
     "email": "メール",
     "password": "パスワード",
-    "remember": "覚えています"
+    "remember": "覚えています",
+    "remember1": "覚えています134123"
   }
 }
