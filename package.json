@@ -8,6 +8,8 @@
     "start": "next start",
     "lint": "next lint",
     "lint:css": "stylelint --fix **/*.{css,scss,sass} --ignore-path .gitignore --ignore-path .stylelintignore --config-basedir ./src/styles/",
+    "prettier": "prettier --check \"src/**/(*.tsx|*.ts|*.css|*.scss)\"",
+    "lint:staged": "lint-staged",
     "prepare": "husky install"
   },
   "dependencies": {
