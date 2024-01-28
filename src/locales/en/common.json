@@ -3,5 +3,20 @@
   "action": {
     "submit": "Submit",
     "logout": "Logout"
+  },
+  "label": {
+    "empty_data": "No data"
+  },
+  "form": {
+    "select": {
+      "blank_option": "選ぶ"
+    }
+  },
+  "message": {
+    "error": {
+      "user_not_found": "user is not found",
+      "post_not_found": "post is not found",
+      "default": "Error"
+    }
   }
 }

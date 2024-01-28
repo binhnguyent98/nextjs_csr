@@ -25,7 +25,7 @@ export const useLogic = (): Props => {
     if (response?.status && accessToken && refreshToken) {
       dispatch(
         authenticationAction.setAuthentication({
-          accessToken,
+          accessToken: 'binh',
           refreshToken,
           isRemember: data?.isRemember || false,
         })

@@ -24,13 +24,6 @@ export type ResultParamFnProps = {
   callBack: <T>(value?: T) => boolean;
 };
 
-declare module 'yup' {
-  interface StringSchema {
-    isHalfSize(props?: ParamFnProps & { t: Translate }): this;
-    isRequired(props?: ParamFnProps & { t: Translate }): this;
-  }
-}
-
 const yup = () => {
   const schema = { ...YupRoot };
 
