@@ -5,7 +5,7 @@ module.exports = {
   logBuild: false,
   loader: true,
   pages: {
-    '*': ['common'],
+    '*': ['common', 'validate'],
     '/login': ['login'],
   },
 };

@@ -13,7 +13,7 @@ const Component = ({ onLogin }: Props) => {
   const { t } = useTranslation('login');
 
   const { handleSubmit, control } = useForm<AuthFormDto>({
-    schema,
+    schema: schema(t),
   });
 
   return (
