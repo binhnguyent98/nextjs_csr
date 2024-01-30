@@ -1,3 +1,5 @@
+import { Translate } from 'next-translate';
+
 import { ParamFnProps, ResultParamFnProps } from '.';
 
 const validateRequired = (props: ParamFnProps): ResultParamFnProps => {
@@ -22,3 +24,10 @@ export const numberRules: Record<string, (props: ParamFnProps) => ResultParamFnP
   isRequired: validateRequired,
   isHalfSize: validateHalfSize,
 };
+
+declare module 'yup' {
+  interface NumberSchema {
+    isHalfSize(props?: ParamFnProps & { t: Translate }): this;
+    isRequired(props?: ParamFnProps & { t: Translate }): this;
+  }
+}

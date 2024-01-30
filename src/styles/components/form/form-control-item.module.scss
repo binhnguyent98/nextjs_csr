@@ -1,14 +1,16 @@
+@import 'common/function';
+
 .form-control-item {
   width: 100%;
 
   &__error {
-    height: 18px;
+    height: calc-rem(18);
     color: theme('colors.error');
   }
 
   &__box-error {
     > *:nth-child(1) {
-      border: 1px solid theme('colors.error');
+      border: calc-rem(1) solid theme('colors.error');
     }
   }
 }

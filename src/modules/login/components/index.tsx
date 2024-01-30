@@ -1,7 +1,8 @@
-import { Button, Checkbox, Form, Input } from 'antd';
+import { Checkbox, Form, Input } from 'antd';
 import useTranslation from 'next-translate/useTranslation';
 
 import { CustomForm } from '@/components';
+import { Element } from '@/components/custom';
 import { LAYOUT_TYPE } from '@/components/form/formControl';
 import { useForm } from '@/hooks/useForm';
 import style from '@/styles/pages/login/index.module.scss';
@@ -55,9 +56,9 @@ const Component = ({ onLogin }: Props) => {
               }}
             />
             <div className={style['login__form__action']}>
-              <Button htmlType="button" onClick={handleSubmit(onLogin)}>
+              <Element.Button htmlType="button" type="primary" size="xs" onClick={handleSubmit(onLogin)}>
                 {t('common:action.submit')}
-              </Button>
+              </Element.Button>
             </div>
           </div>
         </Form>

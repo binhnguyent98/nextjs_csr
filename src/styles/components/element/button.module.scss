@@ -1,0 +1,30 @@
+@import 'common/function';
+
+.button {
+  height: unset;
+
+  &__type {
+    &__primary {
+      background: theme('colors.primary');
+      color: theme('colors.black');
+    }
+  }
+
+  &__size {
+    &__xs {
+      padding: calc-rem(8, 18);
+    }
+
+    &__sm {
+      padding: calc-rem(10, 20);
+    }
+
+    &__md {
+      padding: calc-rem(12, 22);
+    }
+
+    &__lg {
+      padding: calc-rem(16, 24);
+    }
+  }
+}
