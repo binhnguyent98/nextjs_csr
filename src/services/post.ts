@@ -6,3 +6,9 @@ export const getPost: APIConfig = {
   url: '/posts',
   key: ['get_post'],
 };
+
+export const deletePost: APIConfig = {
+  method: METHOD_API.DELETE,
+  url: '/delete-posts/{id}',
+  key: ['delete_post'],
+};

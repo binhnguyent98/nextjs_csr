@@ -8,6 +8,12 @@
       background: theme('colors.primary');
       color: theme('colors.black');
     }
+
+    &__none {
+      background-color: transparent;
+      border: none;
+      padding: unset;
+    }
   }
 
   &__size {

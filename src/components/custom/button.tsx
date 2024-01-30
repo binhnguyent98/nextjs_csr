@@ -3,15 +3,15 @@ import clsx from 'clsx';
 
 import style from '@/styles/components/element/button.module.scss';
 
-declare const ButtonTypes: readonly ['primary', 'outlined', 'danger'];
+declare const ButtonTypes: readonly ['primary', 'outlined', 'danger', 'none'];
 declare const ButtonSizes: readonly ['xs', 'sm', 'md', 'lg'];
 
-interface BtnProps extends Omit<ButtonProps, 'type' | 'size'> {
+export interface BtnCustomProps extends Omit<ButtonProps, 'type' | 'size'> {
   type?: (typeof ButtonTypes)[number];
   size?: (typeof ButtonSizes)[number];
 }
 
-export const Button = (props: BtnProps) => {
+export const Button = (props: BtnCustomProps) => {
   const { type, size, className, ...rest } = props;
 
   return (

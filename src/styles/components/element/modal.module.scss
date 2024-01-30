@@ -1,0 +1,15 @@
+@import 'common/function';
+
+.modal {
+  &__header {
+    &__title {
+      margin-bottom: calc-rem(16);
+    }
+
+    &__closable {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+    }
+  }
+}
