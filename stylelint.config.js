@@ -28,7 +28,7 @@ module.exports = {
       },
     ],
     'no-invalid-position-at-import-rule': null,
-    'scss/no-global-function-names': true,
+    'scss/no-global-function-names': null,
   },
   singleQuote: true,
 };
