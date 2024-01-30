@@ -26,14 +26,11 @@ jobs:
 
     - name: Build, tag, and push image to Amazon ECR
       id: build-image
-      env:
-        ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-        IMAGE_TAG: ${{ github.sha }}
       run: |
         # Build a docker container and
         # push it to ECR so that it can
         # be deployed to ECS.
-        docker build -t nextjs_csr.
+        docker build -t nextjs_csr .
         docker push nextjs_csr
         echo "image=nextjs_csr" >> $GITHUB_OUTPUT
 
