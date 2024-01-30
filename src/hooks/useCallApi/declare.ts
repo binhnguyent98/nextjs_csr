@@ -29,3 +29,9 @@ export type QueryRootProps<TResData, TParamDto> = OptionQuery<TResData, TParamDt
 
 export type MutationRootProps<TResData, TParamDto> = OptionQuery<TResData, TParamDto> &
   UseMutationOptions<ResponseTemplate<TResData>, ResponseTemplate<TResData>, TParamDto>;
+
+//-----------------------------------------------------------
+
+// Error code handle toast message
+
+export const errorCommonHandler = ['USER_NOT_FOUND', 'POST_NOT_FOUND'];

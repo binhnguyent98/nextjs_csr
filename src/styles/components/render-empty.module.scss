@@ -1,0 +1,7 @@
+@import 'common/function';
+
+.render-empty {
+  font-size: calc-rem(12);
+  text-align: center;
+  padding: calc-rem(10, 12);
+}

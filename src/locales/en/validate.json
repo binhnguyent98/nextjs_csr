@@ -1,1 +1,9 @@
-{}
+{
+  "form": {
+    "required_str": "{{field}} is required",
+    "required_number": "{{field}} is required",
+    "required_obj": "{{field}} is required",
+    "required_ar": "{{field}} is required",
+    "is_half_size": ""
+  }
+}

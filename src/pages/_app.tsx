@@ -9,6 +9,7 @@ import { PersistGate } from 'redux-persist/integration/react';
 
 import { ROOT_LAYOUT_TYPE, RootContainer } from '@/containers/root';
 import { AxiosProvider } from '@/providers/axios';
+import { NotificationProvider } from '@/providers/notification';
 import { TranslateProvider } from '@/providers/translate';
 import { persistor, storeGlobal } from '@/store';
 
@@ -26,15 +27,17 @@ export default function App({ Component, pageProps }: AppPropsWithLayout) {
   return (
     <Provider store={storeGlobal}>
       <PersistGate persistor={persistor}>
-        <AxiosProvider>
-          <QueryClientProvider client={queryClient}>
-            <TranslateProvider>
-              <RootContainer layoutType={Component.layoutType ?? ROOT_LAYOUT_TYPE.GUEST}>
-                <Component {...pageProps} />
-              </RootContainer>
-            </TranslateProvider>
-          </QueryClientProvider>
-        </AxiosProvider>
+        <TranslateProvider>
+          <NotificationProvider>
+            <AxiosProvider>
+              <QueryClientProvider client={queryClient}>
+                <RootContainer layoutType={Component.layoutType ?? ROOT_LAYOUT_TYPE.GUEST}>
+                  <Component {...pageProps} />
+                </RootContainer>
+              </QueryClientProvider>
+            </AxiosProvider>
+          </NotificationProvider>
+        </TranslateProvider>
       </PersistGate>
     </Provider>
   );
