@@ -15,7 +15,7 @@ export const buildQueryFn = <TResData = unknown, TParamDto = unknown>(
 };
 
 export const useQuery = <TResData, TParamDto>(props: QueryRootProps<TResData, TParamDto>): UseQueryResult<ResponseTemplate<TResData>> => {
-  const { apiConfig, params, axios, dataResDto, ...rest } = props;
+  const { apiConfig, params, axios, dataResDto, onError, onFinally, ...rest } = props;
   const axiosClient = axios ?? useAxios();
 
   const queryKey = useMemo(() => {
@@ -32,8 +32,10 @@ export const useQuery = <TResData, TParamDto>(props: QueryRootProps<TResData, TP
   const { data } = queryResult;
 
   if (!data?.status) {
-    props.onError && props.onError(data);
+    onError && onError(data);
   }
+
+  data && onFinally && onFinally(data, data);
 
   return queryResult;
 };
@@ -41,7 +43,7 @@ export const useQuery = <TResData, TParamDto>(props: QueryRootProps<TResData, TP
 export const useAction = <TParamDto, TResData = unknown>(
   props: MutationRootProps<TResData, TParamDto>
 ): UseMutationResult<ResponseTemplate<TResData>, ResponseTemplate<TResData>, TParamDto> => {
-  const { apiConfig, axios, dataResDto, ...rest } = props;
+  const { apiConfig, axios, dataResDto, onError, onFinally, ...rest } = props;
   const axiosClient = axios ?? useAxios();
 
   const action = useMutation<ResponseTemplate<TResData>, ResponseTemplate<TResData>, TParamDto>({
@@ -54,8 +56,10 @@ export const useAction = <TParamDto, TResData = unknown>(
   const { data, variables } = action;
 
   if (data && !data?.status) {
-    props?.onError && props?.onError(data, variables as TParamDto, undefined);
+    onError && onError(data, variables as TParamDto, undefined);
   }
+
+  data && onFinally && onFinally(data, data, variables);
 
   return action;
 };

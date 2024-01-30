@@ -25,10 +25,19 @@ export type OptionQuery<TResData, TParamDto> = Omit<FetcherProps<TResData, TPara
   axios?: AxiosInstance;
 };
 
-export type QueryRootProps<TResData, TParamDto> = OptionQuery<TResData, TParamDto> & Omit<UseQueryOptions<ResponseTemplate<TResData>>, 'queryKey'>;
+export type QueryRootProps<TResData, TParamDto> = OptionQuery<TResData, TParamDto> &
+  Omit<UseQueryOptions<ResponseTemplate<TResData>>, 'queryKey' | 'onSettled'> & {
+    onFinally?: (data: ResponseTemplate<TResData> | undefined, error: ResponseTemplate<TResData> | null) => void;
+  };
 
 export type MutationRootProps<TResData, TParamDto> = OptionQuery<TResData, TParamDto> &
-  UseMutationOptions<ResponseTemplate<TResData>, ResponseTemplate<TResData>, TParamDto>;
+  Omit<UseMutationOptions<ResponseTemplate<TResData>, ResponseTemplate<TResData>, TParamDto>, 'onSettled'> & {
+    onFinally?: (
+      data: ResponseTemplate<TResData> | undefined,
+      error: ResponseTemplate<TResData> | null,
+      variables: TParamDto | undefined
+    ) => Promise<unknown> | unknown;
+  };
 
 //-----------------------------------------------------------
 
