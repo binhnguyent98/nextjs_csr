@@ -2,14 +2,15 @@
   "title": "ログイン",
   "action": {
     "submit": "提出する",
-    "logout": "ログアウト"
+    "logout": "ログアウト",
+    "cancel": "キャンセル"
   },
   "label": {
     "empty_data": "データなし"
   },
   "form": {
     "select": {
-      "blank_option": "選ぶ選ぶ選ぶ選ぶ選ぶ選ぶ選ぶ選ぶ選ぶ選ぶ選ぶ選ぶ"
+      "blank_option": "選ぶ"
     }
   },
   "message": {

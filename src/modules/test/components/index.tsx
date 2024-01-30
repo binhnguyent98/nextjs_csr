@@ -3,14 +3,26 @@ import { useState } from 'react';
 import { CustomForm } from '@/components';
 import { Element } from '@/components/custom';
 import { NotificationType } from '@/constants';
+import { withModal } from '@/hocs/withModal';
 import { useForm } from '@/hooks/useForm';
 import { useNotification } from '@/hooks/useNotification';
 import { convertToOptionData } from '@/utilities/helper';
 
-const Component = () => {
+type Props = ComponentWithModal;
+
+const Component = (props: Props) => {
+  const { openModal } = props;
+
   const [type, setType] = useState<NotificationType>('success');
   const { control } = useForm();
   const { notification } = useNotification();
+
+  const handleOpenModal = () => {
+    openModal &&
+      openModal({
+        title: 'Test Abc',
+      });
+  };
 
   const typeNotification = [
     {
@@ -70,8 +82,13 @@ const Component = () => {
           {'Show notification'}
         </Element.Button>
       </div>
+      <div className="flex items-center justify-center space-x-4 w-full">
+        <Element.Button type="primary" onClick={handleOpenModal}>
+          {'Show modal'}
+        </Element.Button>
+      </div>
     </div>
   );
 };
 
-export const Index = Component;
+export const Index = withModal<Props>(Component);

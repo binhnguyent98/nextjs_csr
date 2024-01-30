@@ -2,7 +2,8 @@
   "title": "Login",
   "action": {
     "submit": "Submit",
-    "logout": "Logout"
+    "logout": "Logout",
+    "cancel": "Cancel"
   },
   "label": {
     "empty_data": "No data"
