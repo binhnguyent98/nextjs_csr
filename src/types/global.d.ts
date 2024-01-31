@@ -9,6 +9,6 @@ declare global {
 
 declare global {
   type ComponentWithModal = {
-    openModal?: (props: ModalCustomProps) => void;
+    openModal: (props: ModalCustomProps) => void;
   };
 }

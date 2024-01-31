@@ -3,8 +3,8 @@ import { useState } from 'react';
 import { Element } from '@/components/custom';
 import { ModalCustomProps } from '@/components/custom/modal';
 
-export const withModal = <T,>(Component: React.ComponentType<T>) => {
-  const HOC: React.FC<T> = (props: T) => {
+export const withModal = <T,>(Component: React.ElementType) => {
+  const HOC = (props: Omit<T, 'openModal'>) => {
     const [modalProps, setModalProps] = useState<ModalCustomProps>({ open: false });
     const { onCancel, onOk, onSubmit, cancelButtonProps, ...rest } = modalProps;
     const [loadingSubmit, setLoadingSubmit] = useState<boolean>(false);

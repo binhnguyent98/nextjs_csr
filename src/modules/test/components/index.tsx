@@ -18,10 +18,9 @@ const Component = (props: Props) => {
   const { notification } = useNotification();
 
   const handleOpenModal = () => {
-    openModal &&
-      openModal({
-        title: 'Test Abc',
-      });
+    openModal({
+      title: 'Test Abc',
+    });
   };
 
   const typeNotification = [
