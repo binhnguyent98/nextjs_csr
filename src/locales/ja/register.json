@@ -1,0 +1,19 @@
+{
+  "title": "ログイン",
+  "fields": {
+    "name": "名前",
+    "email": "メール",
+    "password": "パスワード",
+    "remember": "覚えています"
+  },
+  "message": {
+    "register_success": "正常に登録されました",
+    "error": {
+      "fail": "登録失敗",
+      "user_is_existed": "ユーザーは存在します"
+    }
+  },
+  "link": {
+    "login": "Login"
+  }
+}

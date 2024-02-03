@@ -8,3 +8,11 @@ export class AuthResDto {
     convertDataToInstance(data, this);
   }
 }
+
+export class RenewTokenResDto {
+  accessToken!: string;
+
+  constructor(data?: Partial<RenewTokenResDto>) {
+    convertDataToInstance(data, this);
+  }
+}

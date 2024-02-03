@@ -6,6 +6,8 @@ module.exports = {
   loader: true,
   pages: {
     '*': ['common', 'validate'],
+    '/': ['home'],
     '/login': ['login'],
+    '/register': ['register'],
   },
 };

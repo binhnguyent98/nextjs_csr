@@ -1,46 +1,41 @@
-import { UseMutationOptions, UseQueryOptions } from '@tanstack/react-query';
 import { AxiosInstance } from 'axios';
-import { ClassConstructor } from 'class-transformer';
 
 import { ResponseTemplate } from '@/dto/response';
-import { APIConfig } from '@/types';
-
-// declare fetcher ------------------------------------------
-export type BuildRequestProps<TParamDto = unknown> = {
-  apiConfig: APIConfig;
-  params?: {
-    query?: TParamDto;
-    body?: TParamDto;
-  };
-  axios: AxiosInstance;
-};
-
-export type FetcherProps<TResData = unknown, TParamDto = unknown> = BuildRequestProps<TParamDto> & {
-  dataResDto?: ClassConstructor<TResData>;
-};
+import { EndPointConfig } from '@/types';
 
 //-----------------------------------------------------------
-// optional axios
-export type OptionQuery<TResData, TParamDto> = Omit<FetcherProps<TResData, TParamDto>, 'axios'> & {
-  axios?: AxiosInstance;
+
+type ResultType = 'error' | 'success';
+export type CallBackProps<TResDto = unknown, TParamDto = unknown> = {
+  type: ResultType;
+  data?: ResponseTemplate<TResDto>;
+  param?: TParamDto;
 };
-
-export type QueryRootProps<TResData, TParamDto> = OptionQuery<TResData, TParamDto> &
-  Omit<UseQueryOptions<ResponseTemplate<TResData>>, 'queryKey' | 'onSettled'> & {
-    onFinally?: (data: ResponseTemplate<TResData> | undefined, error: ResponseTemplate<TResData> | null) => void;
-  };
-
-export type MutationRootProps<TResData, TParamDto> = OptionQuery<TResData, TParamDto> &
-  Omit<UseMutationOptions<ResponseTemplate<TResData>, ResponseTemplate<TResData>, TParamDto>, 'onSettled'> & {
-    onFinally?: (
-      data: ResponseTemplate<TResData> | undefined,
-      error: ResponseTemplate<TResData> | null,
-      variables: TParamDto | undefined
-    ) => Promise<unknown> | unknown;
-  };
-
-//-----------------------------------------------------------
 
 // Error code handle toast message
 
 export const errorCommonHandler = ['USER_NOT_FOUND', 'POST_NOT_FOUND'];
+
+// Fetcher
+export type RequestProps<TParamDto = unknown, TResDto = unknown> = {
+  apiConfig: EndPointConfig<TResDto>;
+  param?: TParamDto;
+  axios: AxiosInstance;
+};
+
+//Extend RequestProps - optional axios
+export type OptionQueryRequestProps<TParamDto = unknown, TResDto = unknown> = Omit<RequestProps<TParamDto, TResDto>, 'axios'> & {
+  axios?: AxiosInstance;
+};
+
+//
+type OptionProps<TResDto = unknown, TParamDto = unknown> = {
+  enabled?: boolean;
+  onFinally?: (props: CallBackProps<TResDto, TParamDto>) => void;
+};
+
+//UseQueryProps
+export type UseQueryProps<TResDto, TParamDto = unknown> = OptionQueryRequestProps<TParamDto, TResDto> & OptionProps<TResDto, TParamDto>;
+
+//UseActionProps
+export type UseActionProps<TParamDto = unknown, TResDto = unknown> = OptionQueryRequestProps<TParamDto, TResDto> & OptionProps<TResDto, TParamDto>;

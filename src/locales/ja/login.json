@@ -4,5 +4,15 @@
     "email": "メール",
     "password": "パスワード",
     "remember": "覚えています"
+  },
+  "link": {
+    "register": "Register"
+  },
+  "message": {
+    "error": {
+      "fail": "Error",
+      "login_incorrect": "User is incorrect",
+      "user_must_verify": "user_must_verify"
+    }
   }
 }

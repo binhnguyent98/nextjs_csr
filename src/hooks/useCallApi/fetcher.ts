@@ -1,26 +1,24 @@
-import { AxiosError, AxiosInstance, AxiosResponse } from 'axios';
+import { AxiosError, AxiosResponse } from 'axios';
 import { instanceToPlain, plainToInstance } from 'class-transformer';
 
 import { METHOD_API } from '@/constants';
 import { convertDtoToTemplateDto, ResponseTemplate } from '@/dto/response';
 
-import { BuildRequestProps, FetcherProps } from './declare';
+import { RequestProps } from './declare';
 
-export async function fetcher<TResData = unknown, TParamDto = unknown>(
-  props: FetcherProps<TResData, TParamDto>
-): Promise<ResponseTemplate<TResData>> {
-  const { apiConfig, params, axios, dataResDto } = props;
+export async function fetcher<TParamDto = unknown, TResDto = unknown>(props: RequestProps<TParamDto, TResDto>): Promise<ResponseTemplate<TResDto>> {
+  const { apiConfig } = props;
 
   const fetch = await new Promise<ResponseTemplate>(async (resolve) => {
     if (apiConfig?.factoryData) {
-      const factory = apiConfig?.factoryData as ResponseTemplate<TResData>;
+      const factory = apiConfig?.factoryData as ResponseTemplate<TResDto>;
 
       return setTimeout(() => {
         resolve(factory);
       }, 2000);
     }
 
-    const request = buildRequest<TParamDto>({ apiConfig, axios, params });
+    const request = buildRequest<TParamDto>(props);
 
     try {
       const response = await request();
@@ -40,18 +38,18 @@ export async function fetcher<TResData = unknown, TParamDto = unknown>(
     }
   });
 
-  return plainToInstance(convertDtoToTemplateDto<TResData>(dataResDto), fetch);
+  return plainToInstance(convertDtoToTemplateDto<TResDto>(apiConfig?.dataResDto), fetch);
 }
 
-const buildRequest = <TParamDto = unknown>(
-  props: BuildRequestProps<TParamDto> & { axios: AxiosInstance }
+const buildRequest = <TParamDto = unknown, TResDto = unknown>(
+  props: RequestProps<TParamDto, TResDto>
 ): (() => Promise<AxiosResponse<ResponseTemplate>>) => {
-  const { axios, apiConfig, params } = props;
+  const { axios, apiConfig, param } = props;
   const { method, url } = apiConfig;
   const idempotentMethod = [METHOD_API.POST, METHOD_API.PUT];
 
-  const paramData = instanceToPlain(idempotentMethod.includes(method) ? params?.body : params?.query, { exposeDefaultValues: true });
-  const formatParam = idempotentMethod.includes(method) ? paramData : { params, paramData };
+  const paramData = instanceToPlain(param, { exposeDefaultValues: true });
+  const formatParam = idempotentMethod.includes(method) ? paramData : { params: paramData };
 
   return () => axios[method](url, formatParam);
 };

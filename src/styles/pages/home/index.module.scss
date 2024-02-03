@@ -1,0 +1,15 @@
+@import '../../common/function';
+
+.home {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &__menu {
+    display: flex;
+    margin-top: calc-rem(20);
+    padding: calc-rem(10);
+    column-gap: calc-rem(20);
+  }
+}

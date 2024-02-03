@@ -1,16 +1,19 @@
 import { Checkbox, Form, Input } from 'antd';
+import Link from 'next/link';
 import useTranslation from 'next-translate/useTranslation';
+import { CiLink } from 'react-icons/ci';
 
 import { CustomForm } from '@/components';
 import { Element } from '@/components/custom';
 import { LAYOUT_TYPE } from '@/components/form/formControl';
-import { useForm } from '@/hooks/useForm';
+import { PATH } from '@/constants/path';
+import { useForm } from '@/hooks';
 import style from '@/styles/pages/login/index.module.scss';
 
 import { AuthFormDto, Props } from '../declare';
 import { schema } from '../validate';
 
-const Component = ({ onLogin }: Props) => {
+const Component = ({ onLogin, notice }: Props) => {
   const { t } = useTranslation('login');
 
   const { handleSubmit, control } = useForm<AuthFormDto>({
@@ -55,6 +58,11 @@ const Component = ({ onLogin }: Props) => {
                 );
               }}
             />
+            <Link href={PATH.REGISTER} className={style['login__link']}>
+              <CiLink />
+              {t('link.register')}
+            </Link>
+            <Element.AlertMessage {...notice} className={style['login__notice']} />
             <div className={style['login__form__action']}>
               <Element.Button htmlType="button" type="primary" size="xs" onClick={handleSubmit(onLogin)}>
                 {t('common:action.submit')}
