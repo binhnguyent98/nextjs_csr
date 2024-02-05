@@ -1,0 +1,11 @@
+{
+  "menu": {
+    "post": "Posts",
+    "category": "Categories"
+  },
+  "table": {
+    "title": "Title",
+    "description": "Description",
+    "category": "Category"
+  }
+}

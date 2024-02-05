@@ -1,14 +1,10 @@
 import { METHOD_API } from '@/constants';
-import { APIConfig } from '@/types';
+import { PostListResDto } from '@/dto/response';
+import { EndPointConfig } from '@/types';
 
-export const getPost: APIConfig = {
+export const getListPost: EndPointConfig<PostListResDto> = {
   method: METHOD_API.GET,
-  url: '/posts',
-  key: ['get_post'],
-};
-
-export const deletePost: APIConfig = {
-  method: METHOD_API.DELETE,
-  url: '/delete-posts/{id}',
-  key: ['delete_post'],
+  dataResDto: PostListResDto,
+  url: '/posts/list',
+  key: ['post-list'],
 };

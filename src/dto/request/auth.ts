@@ -8,3 +8,11 @@ export class AuthReqDto {
     convertDataToInstance(data, this);
   }
 }
+
+export class TokenReqDto {
+  token!: string;
+
+  constructor(data?: Partial<TokenReqDto>) {
+    convertDataToInstance(data, this);
+  }
+}

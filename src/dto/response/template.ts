@@ -32,3 +32,7 @@ export const convertDtoToTemplateDto = <TData>(dto: any) => {
 
   return ResponseTemplateData;
 };
+
+export class HasIdResDto {
+  id: string;
+}

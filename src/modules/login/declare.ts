@@ -1,5 +1,6 @@
 import { Exclude } from 'class-transformer';
 
+import { AlertMessageProps } from '@/components/custom/alertMessage';
 import { convertDataToInstance } from '@/utilities/instance';
 
 export class AuthFormDto {
@@ -15,5 +16,6 @@ export class AuthFormDto {
 }
 
 export interface Props {
+  notice?: AlertMessageProps;
   onLogin: (data: AuthFormDto) => void;
 }

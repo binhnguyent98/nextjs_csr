@@ -30,4 +30,14 @@
       text-align: center;
     }
   }
+
+  &__link {
+    display: flex;
+    column-gap: 2px;
+    align-items: center;
+  }
+
+  &__notice {
+    margin: calc-rem(16, 0);
+  }
 }

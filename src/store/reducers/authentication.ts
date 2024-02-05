@@ -3,9 +3,9 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 export const AuthKey = 'auth';
 
 interface AuthState {
-  accessToken: string;
-  refreshToken: string;
-  isRemember: boolean;
+  accessToken?: string;
+  refreshToken?: string;
+  isRemember?: boolean;
 }
 
 const initialState: AuthState = {

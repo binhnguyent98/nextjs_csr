@@ -4,7 +4,7 @@ import { CustomForm } from '@/components';
 import { Element } from '@/components/custom';
 import { NotificationType } from '@/constants';
 import { withModal } from '@/hocs/withModal';
-import { useForm } from '@/hooks/useForm';
+import { useForm } from '@/hooks';
 import { useNotification } from '@/hooks/useNotification';
 import { convertToOptionData } from '@/utilities/helper';
 

@@ -25,17 +25,17 @@ export default function App({ Component, pageProps }: AppPropsWithLayout) {
   return (
     <Provider store={storeGlobal}>
       <PersistGate persistor={persistor}>
-        <AxiosProvider>
-          <TranslateProvider>
-            <NotificationProvider>
-              <ReactQueryProvider>
+        <TranslateProvider>
+          <NotificationProvider>
+            <ReactQueryProvider>
+              <AxiosProvider>
                 <RootContainer layoutType={Component.layoutType ?? ROOT_LAYOUT_TYPE.GUEST}>
                   <Component {...pageProps} />
                 </RootContainer>
-              </ReactQueryProvider>
-            </NotificationProvider>
-          </TranslateProvider>
-        </AxiosProvider>
+              </AxiosProvider>
+            </ReactQueryProvider>
+          </NotificationProvider>
+        </TranslateProvider>
       </PersistGate>
     </Provider>
   );
