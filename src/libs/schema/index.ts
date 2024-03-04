@@ -24,7 +24,7 @@ export type ResultParamFnProps = {
   callBack: <T>(value?: T) => boolean;
 };
 
-const yup = () => {
+const schema = () => {
   const schema = { ...YupRoot };
 
   Object.keys(rules).forEach((key) => {
@@ -57,8 +57,12 @@ const yup = () => {
     }
   });
 
-  return schema;
+  return {
+    ...schema,
+    validate: <T extends object>(data: Partial<Record<keyof T, YupRoot.AnySchema>>) =>
+      schema.object<Partial<Record<keyof T, YupRoot.AnySchema>>>({ ...data }),
+  };
 };
 
 // eslint-disable-next-line import/no-default-export
-export default yup();
+export default schema();

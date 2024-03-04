@@ -19,5 +19,9 @@
       "post_not_found": "post is not found",
       "default": "Error"
     }
+  },
+  "lang": {
+    "ja": "Japan",
+    "en": "English"
   }
 }
