@@ -8,7 +8,7 @@ class Storage implements WebStorage {
 
   setItem = (key: string, item: string): Promise<void> => {
     return new Promise(function (resolve) {
-      Cookies.set(key, item, { expires: 1 });
+      Cookies.set(key, item);
       resolve();
     });
   };

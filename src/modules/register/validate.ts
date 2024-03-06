@@ -6,7 +6,9 @@ import { RegisterFormDto } from './declare';
 
 export const schema = (t: Translate) => {
   return Schema.validate<RegisterFormDto>({
-    email: Schema.string().isRequired({ field: t('fields.email'), t }),
+    email: Schema.string()
+      .isRequired({ field: t('fields.email'), t })
+      .isEmailCustom({ field: t('fields.email'), t }),
     password: Schema.string().isRequired({ field: t('fields.password'), t }),
   });
 };

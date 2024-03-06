@@ -33,7 +33,7 @@ const Component = ({ onLogin, notice }: Props) => {
               required
               control={control}
               render={({ field }) => {
-                return <Input autoComplete="off" {...field} />;
+                return <Input {...field} />;
               }}
             />
             <CustomForm.Control

@@ -4,6 +4,7 @@
     "required_number": "{{field}}フィールドは必須です",
     "required_obj": "{{field}}フィールドは必須です",
     "required_ar": "{{field}}フィールドは必須です",
-    "is_half_size": ""
+    "is_half_size": "",
+    "is_email": "{{field}}有効な電子メールです"
   }
 }

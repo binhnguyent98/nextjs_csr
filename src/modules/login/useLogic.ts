@@ -18,38 +18,32 @@ export const useLogic = (): Props => {
   const dispatch = useDispatch();
   const actionLogic = useAction<AuthReqDto, AuthResDto>({
     apiConfig: login,
-    onFinally({ type, data }) {
-      if (type === 'success') {
-        handleOnSuccess(data?.data);
-      } else {
-        const keyError = data?.error?.errorKey;
-        setNotice({
-          type: 'error',
-          message: t(`login:message.error.${keyError}`, undefined, { fallback: t('login:message.error.login_incorrect') }),
-        });
-      }
-    },
   });
 
-  const handleOnSuccess = (data?: AuthResDto) => {
-    const accessToken = data?.accessToken;
-    const refreshToken = data?.refreshToken;
-
-    if (accessToken && refreshToken) {
-      dispatch(
-        authenticationAction.setAuthentication({
-          accessToken,
-          refreshToken,
-          isRemember: false,
-        })
-      );
-    }
-  };
-
-  const onLogin = (data: AuthFormDto) => {
+  const onLogin = async (data: AuthFormDto) => {
     const param = formToInstance<AuthReqDto>({ data: new AuthFormDto(data), instance: AuthReqDto });
+    const response = await actionLogic.mutateAsync(param);
 
-    actionLogic.mutateAsync(param);
+    if (response?.status) {
+      const accessToken = response?.data?.accessToken;
+      const refreshToken = response?.data?.refreshToken;
+
+      if (accessToken && refreshToken) {
+        dispatch(
+          authenticationAction.setAuthentication({
+            accessToken,
+            refreshToken,
+            isRemember: data?.isRemember || false,
+          })
+        );
+      }
+    } else {
+      const keyError = response?.error?.errorKey;
+      setNotice({
+        type: 'error',
+        message: t(`login:message.error.${keyError}`, undefined, { fallback: t('login:message.error.login_incorrect') }),
+      });
+    }
   };
 
   return {
