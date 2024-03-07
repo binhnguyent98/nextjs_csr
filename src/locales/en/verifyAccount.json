@@ -1,0 +1,7 @@
+{
+  "title": "Verify",
+  "message": {
+    "success": "Verify oke",
+    "error": "Error"
+  }
+}

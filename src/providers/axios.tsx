@@ -58,6 +58,8 @@ export const AxiosProvider = ({ children }: PropsWithChildren) => {
             onLogout();
           }
         }
+
+        throw error;
       }
     );
 

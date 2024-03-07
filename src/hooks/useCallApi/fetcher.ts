@@ -21,7 +21,7 @@ export async function fetcher<TParamDto = unknown, TResDto = unknown>(props: Req
     const request = buildRequest<TParamDto>(props);
 
     try {
-      const response = await request();
+      const response = await request;
       const { status, data } = response.data;
 
       resolve({ status, data });
@@ -41,9 +41,7 @@ export async function fetcher<TParamDto = unknown, TResDto = unknown>(props: Req
   return plainToInstance(convertDtoToTemplateDto<TResDto>(apiConfig?.dataResDto), fetch);
 }
 
-const buildRequest = <TParamDto = unknown, TResDto = unknown>(
-  props: RequestProps<TParamDto, TResDto>
-): (() => Promise<AxiosResponse<ResponseTemplate>>) => {
+const buildRequest = <TParamDto = unknown, TResDto = unknown>(props: RequestProps<TParamDto, TResDto>): Promise<AxiosResponse<ResponseTemplate>> => {
   const { axios, apiConfig, param } = props;
   const { method, url } = apiConfig;
   const idempotentMethod = [METHOD_API.POST, METHOD_API.PUT];
@@ -51,5 +49,5 @@ const buildRequest = <TParamDto = unknown, TResDto = unknown>(
   const paramData = instanceToPlain(param, { exposeDefaultValues: true });
   const formatParam = idempotentMethod.includes(method) ? paramData : { params: paramData };
 
-  return () => axios[method](url, formatParam);
+  return axios[method](url, formatParam);
 };

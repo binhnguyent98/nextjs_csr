@@ -10,5 +10,6 @@ module.exports = {
     '/': ['home'],
     '/login': ['login'],
     '/register': ['register'],
+    '/verify-account': ['verifyAccount'],
   },
 };

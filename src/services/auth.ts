@@ -1,4 +1,5 @@
 import { METHOD_API } from '@/constants';
+import { VerifyAccountReqDto } from '@/dto/request/verifyAccount';
 import { AuthResDto, RenewTokenResDto } from '@/dto/response';
 import { EndPointConfig } from '@/types';
 
@@ -20,4 +21,11 @@ export const renewToken: EndPointConfig<RenewTokenResDto> = {
   dataResDto: RenewTokenResDto,
   url: '/auth/renewToken',
   key: ['auth-renewToken'],
+};
+
+export const verifyAccount: EndPointConfig<VerifyAccountReqDto> = {
+  method: METHOD_API.POST,
+  dataResDto: VerifyAccountReqDto,
+  url: '/auth/verify',
+  key: ['auth-verify'],
 };
