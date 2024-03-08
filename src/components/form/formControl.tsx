@@ -25,12 +25,13 @@ type ControlProps<TFieldValues extends FieldValues = FieldValues, TName extends 
     layout?: LAYOUT_TYPE;
     label?: React.ReactNode;
     children?: React.ReactElement;
+    trim?: boolean;
   };
 
 export const FormControl = <TFieldValues extends FieldValues = FieldValues, TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>>(
   props: ControlProps<TFieldValues, TName>
 ) => {
-  const { label, required, classes, render, ...rest } = props;
+  const { label, required, classes, render, trim = true, ...rest } = props;
   const layout = props.layout ?? LAYOUT_TYPE.HORIZONTAL;
   const colon = props.colon ?? true;
 
@@ -39,9 +40,13 @@ export const FormControl = <TFieldValues extends FieldValues = FieldValues, TNam
       <LayoutForm label={label} layout={layout} colon={colon} required={required} className={classes?.label}>
         <Controller
           {...rest}
-          render={({ field, fieldState, formState }) => (
-            <FormControlItem error={fieldState.error?.message}>{render({ field, fieldState, formState })}</FormControlItem>
-          )}
+          render={({ field, fieldState, formState }) => {
+            if (trim && typeof field.value === 'string') {
+              field.onBlur = () => field.onChange(field.value.trim());
+            }
+
+            return <FormControlItem error={fieldState.error?.message}>{render({ field, fieldState, formState })}</FormControlItem>;
+          }}
         />
       </LayoutForm>
     </Form.Item>

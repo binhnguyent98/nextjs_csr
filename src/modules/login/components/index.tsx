@@ -13,11 +13,12 @@ import style from '@/styles/pages/login/index.module.scss';
 import { AuthFormDto, Props } from '../declare';
 import { schema } from '../validate';
 
-const Component = ({ onLogin, notice }: Props) => {
+const Component = ({ onLogin, notice, clearError }: Props) => {
   const { t } = useTranslation('login');
 
   const { handleSubmit, control } = useForm<AuthFormDto>({
     schema: schema(t),
+    clearError,
   });
 
   return (

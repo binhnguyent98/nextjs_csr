@@ -33,6 +33,7 @@
 
   &__link {
     display: flex;
+    width: fit-content;
     column-gap: 2px;
     align-items: center;
   }

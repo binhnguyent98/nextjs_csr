@@ -18,4 +18,5 @@ export class AuthFormDto {
 export interface Props {
   notice?: AlertMessageProps;
   onLogin: (data: AuthFormDto) => void;
+  clearError: () => void;
 }

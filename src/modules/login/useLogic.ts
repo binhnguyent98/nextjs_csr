@@ -49,5 +49,6 @@ export const useLogic = (): Props => {
   return {
     notice,
     onLogin,
+    clearError: () => setNotice(undefined),
   };
 };
