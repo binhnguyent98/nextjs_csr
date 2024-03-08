@@ -21,6 +21,7 @@
     "axios": "^1.6.5",
     "class-transformer": "^0.5.1",
     "clsx": "^2.1.0",
+    "framer-motion": "^11.0.8",
     "js-cookie": "^3.0.5",
     "lodash": "^4.17.21",
     "next": "13.5.6",

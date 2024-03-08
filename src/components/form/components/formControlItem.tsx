@@ -1,4 +1,4 @@
-import clsx from 'clsx';
+import { Form } from 'antd';
 
 import styles from '@/styles/components/form/form-control-item.module.scss';
 
@@ -9,9 +9,8 @@ interface Props {
 
 export const FormControlItem = ({ children, error }: Props) => {
   return (
-    <div className={styles['form-control-item']}>
-      <div className={clsx(!!error && styles['form-control-item__box-error'])}>{children}</div>
-      <div className={styles['form-control-item__error']}>{error}</div>
-    </div>
+    <Form.Item className={styles['form-control-item']} help={error} validateStatus={error && 'error'}>
+      {children}
+    </Form.Item>
   );
 };
