@@ -20,7 +20,12 @@ export const useLogic = (): Props => {
     apiConfig: login,
   });
 
+  const clearError = () => {
+    setNotice(undefined);
+  };
+
   const onLogin = async (data: AuthFormDto) => {
+    clearError();
     const param = formToInstance<AuthReqDto>({ data: new AuthFormDto(data), instance: AuthReqDto });
     const response = await actionLogic.mutateAsync(param);
 
@@ -49,6 +54,7 @@ export const useLogic = (): Props => {
   return {
     notice,
     onLogin,
-    clearError: () => setNotice(undefined),
+    isLoading: actionLogic.isLoading,
+    clearError,
   };
 };

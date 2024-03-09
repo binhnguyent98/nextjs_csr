@@ -29,3 +29,10 @@ export const verifyAccount: EndPointConfig<VerifyAccountReqDto> = {
   url: '/auth/verify',
   key: ['auth-verify'],
 };
+
+export const resendVerify: EndPointConfig<VerifyAccountReqDto> = {
+  method: METHOD_API.POST,
+  dataResDto: VerifyAccountReqDto,
+  url: '/auth/verify/resend',
+  key: ['auth-verify/resend'],
+};

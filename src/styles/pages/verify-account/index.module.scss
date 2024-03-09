@@ -1,18 +1,50 @@
 @import 'common/function';
 
 .verify-account {
+  height: 100vh;
+  background-color: theme('colors.white');
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 100%;
-  margin-top: to-rem(150);
+  padding: to-rem(24);
 
-  &__thumbnail {
-    max-width: to-rem(120);
+  &__inner {
+    width: 100%;
+    margin: 0 auto;
+    max-width: to-rem(600);
+    height: to-rem(350);
+    word-break: break-all;
+    box-shadow: rgb(0 0 0 / 24%) 0 3px 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: to-rem(24);
+    flex-direction: column;
+    gap: to-rem(16);
+    position: relative;
 
-    img {
+    &__triangle {
+      position: absolute;
+      top: 0;
       width: 100%;
-      height: auto;
+      border-left: 45px solid transparent;
+      border-right: 45px solid transparent;
+      border-top: 60px solid theme('colors.gray-1');
     }
+
+    &__thumbnail {
+      max-width: to-rem(60);
+
+      img {
+        width: 100%;
+        height: auto;
+      }
+    }
+  }
+
+  &__txt {
+    color: theme('colors.black');
+    font-size: to-rem(14);
+    text-align: center;
   }
 }

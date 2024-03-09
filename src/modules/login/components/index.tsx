@@ -13,7 +13,7 @@ import style from '@/styles/pages/login/index.module.scss';
 import { AuthFormDto, Props } from '../declare';
 import { schema } from '../validate';
 
-const Component = ({ onLogin, notice, clearError }: Props) => {
+const Component = ({ onLogin, notice, clearError, isLoading }: Props) => {
   const { t } = useTranslation('login');
 
   const { handleSubmit, control } = useForm<AuthFormDto>({
@@ -65,7 +65,7 @@ const Component = ({ onLogin, notice, clearError }: Props) => {
             </Link>
             <Element.AlertMessage {...notice} className={style['login__notice']} />
             <div className={style['login__form__action']}>
-              <Element.Button htmlType="button" type="primary" size="xs" onClick={handleSubmit(onLogin)}>
+              <Element.Button htmlType="button" type="primary" size="xs" loading={isLoading} onClick={handleSubmit(onLogin)}>
                 {t('common:action.submit')}
               </Element.Button>
             </div>

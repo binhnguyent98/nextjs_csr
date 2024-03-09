@@ -1,7 +1,14 @@
 {
   "title": "Verify",
   "message": {
-    "success": "Verify oke",
-    "error": "Error"
-  }
+    "verified": "Email is verified !",
+    "error": "Verify is error !",
+    "verified_des": "Your email has been successfully verified. You can go back to the login page.",
+    "error_des": "Your email verify is error.",
+    "token_invalid": "Your email verify is error with token invalid",
+    "resend_success": "Your email resend successfully",
+    "resend_error": "Your email resend error"
+  },
+  "btn_login": "Go to login page",
+  "btn_resent_email": "Resent verify"
 }
